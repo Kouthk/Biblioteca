@@ -1,7 +1,7 @@
 # Bilioteca
 Sistema para Biblioteca 
 
-#Objetivo
+# Objetivo
 
     - Cadastro de Livros 
 
@@ -15,7 +15,7 @@ Sistema para Biblioteca
 
     - Relatório de Livros por Área 
     
-#Especificações do Trabalho 
+# Especificações do Trabalho 
 
     - O trabalho deve ter no mínimo 10 classes.
 
