@@ -2,6 +2,9 @@
 package biblioteca;
 
 
-public class RelatorioEmprestimo {
-    
+public class RelatorioEmprestimo extends Emprestimo {
+    private String dataDevolucao;
+            
+ 
 }
+
