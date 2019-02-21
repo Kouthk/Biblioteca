@@ -3,8 +3,7 @@ package biblioteca;
 
 
 public class RelatorioEmprestimo extends Emprestimo {
-    private String dataDevolucao;
-            
- 
+    private String nomeQuemPegou;
+    private String dataDevolucao;          
 }
 

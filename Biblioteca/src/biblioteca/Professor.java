@@ -34,14 +34,11 @@ public class Professor extends Pessoa{
     public void setIdProfessor(String idProfessor) {
         this.idProfessor = idProfessor;
     }
-     public String toString() {
-        String user
-                = "Nome: " + getNome() + " \n"
+     public String getProfessor() {
+        return( "Nome: " + getNome() + " \n"
                 + "Telefone: " + getTelefone() + " \n"
                 + "Data de Nascimento: " + getDataNascimento() + " \n"
                 + "Titulação: " + getTitulacao() + " \n"
-                + "Identificação do professor" + getIdProfessor() + " \n";
-
-        return user;
+                + "Identificação do professor" + getIdProfessor() + " \n");
     }
 }

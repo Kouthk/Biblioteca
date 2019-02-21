@@ -1,25 +1,29 @@
-
 package biblioteca;
 
-public class AreaLivro  extends Livro{
+public class AreaLivro {
+
     private String nomeArea;
     private String temaArea;
-    
-    public AreaLivro(){
-        super();
+
+    Livro livro = new Livro();
+
+    public AreaLivro() {
     }
-    
-    public AreaLivro(String nomeArea, String temaArea,  String titulo, String autorLivro,
-            String tema,String volumeLivro, int numeroDePaginas, String editora){
-        super(titulo,autorLivro,tema, volumeLivro, numeroDePaginas, editora);
+
+    public AreaLivro(String nomeArea, String temaArea) {
         this.nomeArea = nomeArea;
         this.temaArea = temaArea;
     }
-    
-    public void relatorioTodasAsAreas(){
-    
+
+    public void relatorioTodasAsAreas() {
+
     }
-    public void relatorioPorArea(){
-    
+
+    public String relatorioPorArea(Livro livro, String temaArea) {
+        if (this.temaArea.equals(livro.getTema())) {
+            return livro.getLivro();
+        } else {
+            return "";
+        }
     }
 }

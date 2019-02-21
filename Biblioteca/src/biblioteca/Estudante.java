@@ -4,16 +4,18 @@ public class Estudante extends Pessoa {
 
     private String rga;
     private String curso;
+    private boolean punidoAtraso;
 
     public Estudante() {
         super();
     }
 
     public Estudante(String nome, String telefone, String dataNascimento,
-            String rga, String curso) {
+            String rga, String curso, boolean punidoAtraso) {
         super(nome, telefone, dataNascimento);
         this.rga = rga;
-        this.rga = curso;
+        this.curso = curso;
+        this.punidoAtraso = punidoAtraso;
     }
 
     public String getRga() {
@@ -37,10 +39,23 @@ public class Estudante extends Pessoa {
                 = "Nome: " + getNome() + " \n"
                 + "Telefone: " + getTelefone() + " \n"
                 + "Data de Nascimento: " + getDataNascimento() + " \n"
-                + "RGA: " + getRga() + " \n"
                 + "Curso" + getCurso() + " \n";
 
         return user;
+    }
+
+    /**
+     * @return the punidoAtraso
+     */
+    public boolean isPunidoAtraso() {
+        return punidoAtraso;
+    }
+
+    /**
+     * @param punidoAtraso the punidoAtraso to set
+     */
+    public void setPunidoAtraso(boolean punidoAtraso) {
+        this.punidoAtraso = punidoAtraso;
     }
 
 }

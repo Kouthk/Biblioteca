@@ -15,6 +15,12 @@ public class Funcionario extends Pessoa{
         this.idFuncionario = idFuncionario;
     }   
     
+    public String getFuncionario() {
+        return(  "Nome: " + getNome() + " \n"
+                + "Telefone: " + getTelefone() + " \n"
+                + "Data de Nascimento: " + getDataNascimento() + " \n");
+    }
+    
     private void apagarUsuario(){}
     private void apagarLivro (){}
     private void retirarPunicao(){}
