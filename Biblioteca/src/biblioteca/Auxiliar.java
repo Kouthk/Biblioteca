@@ -186,6 +186,8 @@ public class Auxiliar {
     }
 
     //Litagens
+    public void relatorioAreas(){
+    }
     public void listarEstudantes() {
         int i = 0;
 
@@ -260,7 +262,7 @@ public class Auxiliar {
         }
     }
 
-    public void listrarRelatorios() {
+    public void listrarRelatoriosEmprestimos() {
         int i = 0;
         System.out.println("---------------------------------------------");
         System.out.println("--------- Relatorios de emprestimos ---------");
