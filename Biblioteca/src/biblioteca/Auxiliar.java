@@ -12,6 +12,8 @@ public class Auxiliar {
     ArrayList<DoacaoLivro> doadores = new ArrayList();
     ArrayList<Livro> livros = new ArrayList();
     ArrayList<AreaLivro> area = new ArrayList();
+    ArrayList<Emprestimo> emprestimos = new ArrayList();
+    ArrayList<RelatorioEmprestimo> relatoriosEmprestimos = new ArrayList();
 
     String arquivoEstudante = "estudante.bin";
     String arquivoProfessor = "professor.bin";
@@ -124,31 +126,50 @@ public class Auxiliar {
 
     }
 
-    public void cadastrarArea() {
-
-    }
-
+   
     public void cadastrarLivro() {
-
+    	Livro livro = new Livro();
+    	AreaLivro arealivro = new AreaLivro();
+    	
         System.out.println("----------------------------");
         System.out.println("Inserir Livro na Biblioteca");
-        String titulo = scan.nextLine();
+        livro.setTitulo(scan.nextLine());
         System.out.println("Tema do livro");
-        String tema = scan.nextLine();
+        livro.setTema(scan.nextLine());
         System.out.println("Volume");
-        String volumeDoLivro = scan.nextLine();
+        livro.setVolumeLivro(scan.nextLine());
         System.out.println("Numero de paginas");
-        String numeroDePaginas = scan.nextLine();
+        livro.setNumeroDePaginas(scan.nextLine());
         System.out.println("Editora");
-        String editora = scan.nextLine();
+        livro.setEditora(scan.nextLine());
         System.out.println("Autor do livro");
-        String autorLivro = scan.nextLine();
+        livro.setAutorLivro(scan.nextLine());
         System.out.println("Numero de livros adicionado ao acervo");
-        int livrosAdicionadosNaBiblioteca = scan.nextInt();
+        livro.setNumLivrosDisponiveis(scan.nextInt());
         System.out.println("----------------------------");
-        Livro livro = new Livro(titulo, autorLivro, tema, livrosAdicionadosNaBiblioteca, volumeDoLivro,
-                numeroDePaginas, editora);
+        
+        livros.add(livro);//adicionar o livro no arraylist de livros
+        
+        boolean existe = false;
+        for(int i = 0; i < area.size(); i++)
+        	if(area.get(i).getNomeArea().equals(livro.getTema())) {
+        		existe = true;
+        		area.get(i).livros.add(livro);
+        		break;
+        	}
+
+        if(!existe) {
+        	arealivro.livros.add(livro);// adicionar livro à área de livro
+        	arealivro.setNomeArea(livro.getTema());//definindo nome da área igual ao tema do livro
+
+        	System.out.println("deseja falar sobre o assunto do tema desse livro? 0 - não");
+        	if(!scan.nextLine().isEmpty()    ||    scan.nextLine()!="0")
+        		arealivro.setTemaArea(scan.nextLine());
+        	area.add(arealivro);
+        }
+        
     }
+   
 
     //Litagens
     public void listarEstudantes() {
@@ -277,21 +298,29 @@ public class Auxiliar {
     public String emprestimo() {
         Emprestimo emprestimo = new Emprestimo();
         Estudante est = new Estudante();
-        System.out.println("Livros em nosso acervo: \n");;
+        RelatorioEmprestimo  relatorioEmp = new RelatorioEmprestimo();
+        System.out.println("Livros em nosso acervo: \n");
         listarLivros();
         System.out.println("Escolha o Livro");
         int op = scan.nextInt();
         System.out.println("Livro" + livros.get(op).getLivro() + "Selecionado");
+        emprestimo.setLivro(livros.get(op).getLivro());
+
         System.out.println("Realizar emprestimo como Aluno digite 1 como professor Digite 2");
         int opAlunoProfessor = scan.nextInt();
         switch (opAlunoProfessor) {
             case 1:
                 System.out.println("Digite seu RGA");
                 String rgaComp = scan.nextLine();
-                for (int i = 0; i < estudantes.; i++) {
+                for (int i = 0; i < estudantes.size(); i++) {
                     if (estudantes.get(i).getRga().contains(rgaComp)) {
                         if (livros.get(op).getNumLivrosDisponiveis() >= 1) {
                             livros.get(op).setNumLivrosDisponiveis(livros.get(op).getNumLivrosDisponiveis() - 1);
+                            emprestimo.setUser(estudantes.get(i).getEstudante());
+                            System.out.println("Infomacoes adicionais :");
+                            emprestimo.setInformacoesAdicionais(scan.nextLine());
+                            emprestimos.add(emprestimo);
+                            return "Livro emprestado com sucesso";
                         } else {
                             return "Nao temos esse livro disponivel para emprestimo";
                         }
@@ -304,24 +333,32 @@ public class Auxiliar {
             case 2:
                 System.out.println("Digite seu ID");
                 String idProfessorComp = scan.nextLine();
-                for(int i = 0; i<professores.; i++){
-                if (professores.get(i).getIdProfessor().contains(idProfessorComp)) {
-                    if (livros.get(op).getNumLivrosDisponiveis() >= 1) {
-                        livros.get(op).setNumLivrosDisponiveis(livros.get(op).getNumLivrosDisponiveis() - 1);
+                for (int i = 0; i < professores.size(); i++) {
+                    if (professores.get(i).getIdProfessor().contains(idProfessorComp)) {
+                        if (livros.get(op).getNumLivrosDisponiveis() >= 1) {
+                            livros.get(op).setNumLivrosDisponiveis(livros.get(op).getNumLivrosDisponiveis() - 1);
+                            emprestimo.setUser(professores.get(i).getProfessor());
+                            System.out.println("Infomacoes adicionais :");
+                            emprestimo.setInformacoesAdicionais(scan.nextLine());
+                            emprestimos.add(emprestimo);
+                            
+                            relatoriosEmprestimos.add(relatorioEmp);
+                            return "Livro emprestado com sucesso";
+
+                        } else {
+                            return "Nao temos esse livro disponivel para emprestimo";
+                        }
                     } else {
-                        return "Nao temos esse livro disponivel para emprestimo";
+                        return "ID invalido";
                     }
-                } else {
-                    return "ID invalido";
-                }
                 }
                 break;
             default:
                 return "Opcao invalida, falha ao adquirir livro!";
         }
 
+       
+        return null;
     }
-
-
 
 }
