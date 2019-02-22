@@ -322,18 +322,6 @@ public class Auxiliar {
 
     }
 
-    public String realizarManutencao() {
 
-        manutencao.setProcedimentos(listaProcedimentosManutencao);
-
-        System.out.println("Digite a descrição da manutenção");
-        scan.nextLine();
-        String descricao = scan.nextLine();
-        manutencao.setDescricao(descricao);
-
-        System.out.println("Manutenção cadastrada com sucesso");
-        manutencoes.add(manutencao);
-        relatorioCliente.setManutencao(manutencoes);
-    }
 
 }
