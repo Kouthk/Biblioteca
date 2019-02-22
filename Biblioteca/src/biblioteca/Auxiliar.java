@@ -5,22 +5,23 @@ import java.util.Scanner;
 
 public class Auxiliar {
 
-    ArrayList<Estudante> estudantes = new ArrayList();
-    ArrayList<Professor> professores = new ArrayList();
-    ArrayList<Autor> autores = new ArrayList();
-    ArrayList<Funcionario> funcionarios = new ArrayList();
-    ArrayList<DoacaoLivro> doadores = new ArrayList();
-    ArrayList<Livro> livros = new ArrayList();
-    ArrayList<AreaLivro> area = new ArrayList();
-    ArrayList<Emprestimo> emprestimos = new ArrayList();
-    ArrayList<RelatorioEmprestimo> relatoriosEmprestimos = new ArrayList();
-
-    String arquivoEstudante = "estudante.bin";
-    String arquivoProfessor = "professor.bin";
-    String arquivoFuncionario = "funcionairo.bin";
-    String arquivoDoacao = "doacao.bin";
-    String arquivoLivro = "livro.bin";
-    String arquivoEmprestimos = "emprestimos.bin";
+    private ArrayList<Estudante> estudantes = new ArrayList();
+    private ArrayList<Professor> professores = new ArrayList();
+    private ArrayList<Autor> autores = new ArrayList();
+    private ArrayList<Funcionario> funcionarios = new ArrayList();
+    private ArrayList<DoacaoLivro> doadores = new ArrayList();
+    private ArrayList<Livro> livros = new ArrayList();
+    private ArrayList<AreaLivro> area = new ArrayList();
+    private ArrayList<Emprestimo> emprestimos = new ArrayList();
+    private ArrayList<RelatorioEmprestimo> relatoriosEmprestimos = new ArrayList();
+    private Arq arq;
+    private String arquivoEstudante = "estudantes.bin";
+    private String arquivoProfessor = "professores.bin";
+    private String arquivoFuncionario = "funcionarios.bin";
+    private String arquivoAutor = "autores.bin";
+    private String arquivoDoacao = "doadores.bin";
+    private String arquivoLivro = "livros.bin";
+    private String arquivoEmprestimos = "relatoriosEmprestimos.bin";
 
     Scanner scan = new Scanner(System.in);
 
@@ -260,7 +261,7 @@ public class Auxiliar {
     }
 
     public void listrarRelatorios() {
-           int i = 0;
+        int i = 0;
         System.out.println("---------------------------------------------");
         System.out.println("--------- Relatorios de emprestimos ---------");
         System.out.println("---------------------------------------------");
@@ -344,13 +345,13 @@ public class Auxiliar {
                             System.out.println("Infomacoes adicionais :");
                             emprestimo.setInformacoesAdicionais(scan.nextLine());
                             emprestimos.add(emprestimo);
-                               String EmprestimoRelatorio =(estudantes.get(i).getEstudante()
+                            String EmprestimoRelatorio = (estudantes.get(i).getEstudante()
                                     + "\n Pegou \n" + livros.get(op).getLivro());
                             System.out.println("Data do emprestimo");
                             String dataEmprestimo = scan.nextLine();
                             System.out.println("Data que ira devolver");
                             String dataDevolucao = scan.nextLine();
-                            RelatorioEmprestimo relatorioEmp = new RelatorioEmprestimo(dataEmprestimo, dataDevolucao,EmprestimoRelatorio);
+                            RelatorioEmprestimo relatorioEmp = new RelatorioEmprestimo(dataEmprestimo, dataDevolucao, EmprestimoRelatorio);
                             relatoriosEmprestimos.add(relatorioEmp);
                             return "Livro emprestado com sucesso";
                         } else {
@@ -373,13 +374,13 @@ public class Auxiliar {
                             System.out.println("Infomacoes adicionais :");
                             emprestimo.setInformacoesAdicionais(scan.nextLine());
                             emprestimos.add(emprestimo);
-                            String EmprestimoRelatorio =(professores.get(i).getProfessor()
+                            String EmprestimoRelatorio = (professores.get(i).getProfessor()
                                     + "\n Pegou \n" + livros.get(op).getLivro());
                             System.out.println("Data do emprestimo");
                             String dataEmprestimo = scan.nextLine();
                             System.out.println("Data que ira devolver");
                             String dataDevolucao = scan.nextLine();
-                            RelatorioEmprestimo relatorioEmp = new RelatorioEmprestimo(dataEmprestimo, dataDevolucao,EmprestimoRelatorio);
+                            RelatorioEmprestimo relatorioEmp = new RelatorioEmprestimo(dataEmprestimo, dataDevolucao, EmprestimoRelatorio);
                             relatoriosEmprestimos.add(relatorioEmp);
 
                             return "Livro emprestado com sucesso";
@@ -398,7 +399,27 @@ public class Auxiliar {
 
         return null;
     }
+// arquivos
 
+    public void escreverArquivo() {
+        arq.escreverArquivoEstudante(estudantes, arquivoEstudante);
+        arq.escreverArquivoProfessor(professores, arquivoProfessor);
+        arq.escreverArquivoFuncionario(funcionarios, arquivoFuncionario);
+        arq.escreverArquivoAutor(autores, arquivoAutor);
+        arq.escreverArquivoDoacaoLivro(doadores, arquivoDoacao);
+        arq.escreverArquivoLivro(livros, arquivoLivro);
+        arq.escreverArquivoRelatorioEmprestimo(relatoriosEmprestimos, arquivoEmprestimos);
 
+    }
 
+    public void lerArquivo() {
+        estudantes = arq.lerArquivoEstudante(arquivoEstudante);
+        professores = arq.lerArquivoProfessor(arquivoProfessor);
+        funcionarios = arq.lerArquivoFuncionario(arquivoFuncionario);
+        autores = arq.lerArquivoAutor(arquivoAutor);
+        doadores = arq.lerArquivoDoacaoLivro(arquivoDoacao);
+        livros = arq.lerArquivoLivro(arquivoLivro);
+        relatoriosEmprestimos = arq.lerArquivoRelatorioEmprestimo(arquivoEmprestimos);
+
+    }
 }
