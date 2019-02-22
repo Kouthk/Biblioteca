@@ -4,15 +4,17 @@ package biblioteca;
 
 public class RelatorioEmprestimo extends Emprestimo{
     private String dataEmprestimo;
-    private String prazoParaDevolucao;     
+    private String prazoParaDevolucao;
+    private String emprestimoRelatorio;
     
     public RelatorioEmprestimo(){}
     
     public RelatorioEmprestimo(String dataEmprestimo, String prazoParaDevolucao,
-                String professor, String aluno, String livro){
-        super(professor, aluno, livro);
+                    String emprestimoRelatorio){
+
         this.dataEmprestimo = dataEmprestimo;
         this.prazoParaDevolucao = prazoParaDevolucao;
+        this.emprestimoRelatorio = emprestimoRelatorio;
     }
 
   
@@ -33,6 +35,16 @@ public class RelatorioEmprestimo extends Emprestimo{
    
     public void setPrazoParaDevolucao(String prazoParaDevolucao) {
         this.prazoParaDevolucao = prazoParaDevolucao;
+    }
+
+  
+    public String getEmprestimoRelatorio() {
+        return emprestimoRelatorio;
+    }
+
+
+    public void setEmprestimoRelatorio(String emprestimoRelatorio) {
+        this.emprestimoRelatorio = emprestimoRelatorio;
     }
 }
 

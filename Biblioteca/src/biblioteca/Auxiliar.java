@@ -140,10 +140,10 @@ public class Auxiliar {
 
     }
 
-  public void cadastrarLivro() {
-    	Livro livro = new Livro();
-    	AreaLivro arealivro = new AreaLivro();
-    	
+    public void cadastrarLivro() {
+        Livro livro = new Livro();
+        AreaLivro arealivro = new AreaLivro();
+
         System.out.println("----------------------------");
         System.out.println("Inserir Livro na Biblioteca");
         livro.setTitulo(scan.nextLine());
@@ -160,30 +160,29 @@ public class Auxiliar {
         System.out.println("Numero de livros adicionado ao acervo");
         livro.setNumLivrosDisponiveis(scan.nextInt());
         System.out.println("----------------------------");
-        
+
         livros.add(livro);//adicionar o livro no arraylist de livros
-        
+
         boolean existe = false;
-        for(int i = 0; i < area.size(); i++)
-        	if(area.get(i).getNomeArea().equals(livro.getTema())) {
-        		existe = true;
-        		area.get(i).livros.add(livro);
-        		break;
-        	}
-
-        if(!existe) {
-        	arealivro.livros.add(livro);// adicionar livro à área de livro
-        	arealivro.setNomeArea(livro.getTema());//definindo nome da área igual ao tema do livro
-
-        	System.out.println("deseja falar sobre o assunto do tema desse livro? 0 - não");
-        	if(!scan.nextLine().isEmpty()    ||    scan.nextLine()!="0")
-        		arealivro.setTemaArea(scan.nextLine());
-        	area.add(arealivro);
+        for (int i = 0; i < area.size(); i++) {
+            if (area.get(i).getNomeArea().equals(livro.getTema())) {
+                existe = true;
+                area.get(i).livros.add(livro);
+                break;
+            }
         }
-  }
 
-    
-       
+        if (!existe) {
+            arealivro.livros.add(livro);// adicionar livro à área de livro
+            arealivro.setNomeArea(livro.getTema());//definindo nome da área igual ao tema do livro
+
+            System.out.println("deseja falar sobre o assunto do tema desse livro? 0 - não");
+            if (!scan.nextLine().isEmpty() || scan.nextLine() != "0") {
+                arealivro.setTemaArea(scan.nextLine());
+            }
+            area.add(arealivro);
+        }
+    }
 
     //Litagens
     public void listarEstudantes() {
@@ -260,6 +259,18 @@ public class Auxiliar {
         }
     }
 
+    public void listrarRelatorios() {
+           int i = 0;
+        System.out.println("---------------------------------------------");
+        System.out.println("--------- Relatorios de emprestimos ---------");
+        System.out.println("---------------------------------------------");
+        for (RelatorioEmprestimo x : relatoriosEmprestimos) {
+            System.out.println(i + ": " + x);
+            i++;
+        }
+
+    }
+
     //Deletar dados
     public void apagarAluno() {
         listarEstudantes();
@@ -312,7 +323,6 @@ public class Auxiliar {
     public String emprestimo() {
         Emprestimo emprestimo = new Emprestimo();
         Estudante est = new Estudante();
-        RelatorioEmprestimo relatorioEmp = new RelatorioEmprestimo();
         System.out.println("Livros em nosso acervo: \n");
         listarLivros();
         System.out.println("Escolha o Livro");
@@ -334,6 +344,14 @@ public class Auxiliar {
                             System.out.println("Infomacoes adicionais :");
                             emprestimo.setInformacoesAdicionais(scan.nextLine());
                             emprestimos.add(emprestimo);
+                               String EmprestimoRelatorio =(estudantes.get(i).getEstudante()
+                                    + "\n Pegou \n" + livros.get(op).getLivro());
+                            System.out.println("Data do emprestimo");
+                            String dataEmprestimo = scan.nextLine();
+                            System.out.println("Data que ira devolver");
+                            String dataDevolucao = scan.nextLine();
+                            RelatorioEmprestimo relatorioEmp = new RelatorioEmprestimo(dataEmprestimo, dataDevolucao,EmprestimoRelatorio);
+                            relatoriosEmprestimos.add(relatorioEmp);
                             return "Livro emprestado com sucesso";
                         } else {
                             return "Nao temos esse livro disponivel para emprestimo";
@@ -355,7 +373,15 @@ public class Auxiliar {
                             System.out.println("Infomacoes adicionais :");
                             emprestimo.setInformacoesAdicionais(scan.nextLine());
                             emprestimos.add(emprestimo);
+                            String EmprestimoRelatorio =(professores.get(i).getProfessor()
+                                    + "\n Pegou \n" + livros.get(op).getLivro());
+                            System.out.println("Data do emprestimo");
+                            String dataEmprestimo = scan.nextLine();
+                            System.out.println("Data que ira devolver");
+                            String dataDevolucao = scan.nextLine();
+                            RelatorioEmprestimo relatorioEmp = new RelatorioEmprestimo(dataEmprestimo, dataDevolucao,EmprestimoRelatorio);
                             relatoriosEmprestimos.add(relatorioEmp);
+
                             return "Livro emprestado com sucesso";
 
                         } else {
@@ -373,11 +399,6 @@ public class Auxiliar {
         return null;
     }
 
-    
-    
 
-    public void gerarRelatorioEmprestimo(){
-    
-    }
 
 }
