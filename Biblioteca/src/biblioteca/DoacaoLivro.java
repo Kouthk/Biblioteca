@@ -11,10 +11,9 @@ public class DoacaoLivro extends Pessoa {
     }
     
     public DoacaoLivro(String nome, String telefone, String dataNascimento,
-            String idDoacao, String numeroExemplaresDoados){
+            String idDoacao, int numeroExemplaresDoados){
         super(nome, telefone, dataNascimento);
-        this.idDoacao = numeroExemplaresDoados;
+        this.idDoacao = idDoacao;
+        this.numeroExemplaresDoados = numeroExemplaresDoados;
     }
-     
-    public void relatorioLivrosDoados(){}
 }

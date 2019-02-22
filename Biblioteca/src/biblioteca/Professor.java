@@ -38,7 +38,16 @@ public class Professor extends Pessoa{
         return( "Nome: " + getNome() + " \n"
                 + "Telefone: " + getTelefone() + " \n"
                 + "Data de Nascimento: " + getDataNascimento() + " \n"
-                + "Titulação: " + getTitulacao() + " \n"
-                + "Identificação do professor" + getIdProfessor() + " \n");
+                + "Titulação: " + getTitulacao() + " \n");
+    }
+     
+    public String toString() {
+        String user
+                = "Nome: " + getNome() + " \n"
+                + "Telefone: " + getTelefone() + " \n"
+                + "Data de Nascimento: " + getDataNascimento() + " \n"
+                + "Titulação: " + getTitulacao() + " \n";
+
+        return user;
     }
 }

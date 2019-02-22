@@ -8,6 +8,7 @@ public class Biblioteca {
 
 
     public static void main(String[] args) {
+        Auxiliar aux = new Auxiliar();
         int op = 01;
         while (op != 0){
             System.out.println("Digite uma das opções abaixo");
@@ -36,11 +37,17 @@ public class Biblioteca {
            
             switch (op){
                 case 1:
+                     aux.cadastrarAluno();
                      break;
                 case 2:
+                     aux.listarEstudantes();
                      break;
                 case 3:
+                    aux.apagarAluno();
                      break;
+                case 4:
+                    aux.listarProfessores();
+                    break;
                 default:
                     if (op == 0){
                        System.out.println("Saindo do sistema"); 

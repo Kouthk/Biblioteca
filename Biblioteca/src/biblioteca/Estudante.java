@@ -34,6 +34,13 @@ public class Estudante extends Pessoa {
         this.curso = curso;
     }
 
+    public String getEstudante() {
+        return ("Nome: " + getNome() + " \n"
+                + "Telefone: " + getTelefone() + " \n"
+                + "Data de Nascimento: " + getDataNascimento() + " \n"
+                + "Curso" + getCurso() + " \n");
+    }
+
     public String toString() {
         String user
                 = "Nome: " + getNome() + " \n"

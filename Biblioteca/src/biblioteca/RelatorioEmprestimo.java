@@ -2,7 +2,7 @@
 package biblioteca;
 
 
-public class RelatorioEmprestimo extends Emprestimo {
+public class RelatorioEmprestimo{
     private String nomeQuemPegou;
     private String dataDevolucao;          
 }
