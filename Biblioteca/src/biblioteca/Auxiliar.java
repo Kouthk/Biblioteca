@@ -201,7 +201,8 @@ public class Auxiliar {
             i++;;
         }
     }
-     public void listarAutores() {
+
+    public void listarAutores() {
         int i = 0;
 
         System.out.println("-----------------------------");
@@ -232,14 +233,15 @@ public class Auxiliar {
         estudantes.remove(op);
         System.out.println("Remoção efetuada com sucesso");
     }
-    
-      public void apagarProfessor() {
+
+    public void apagarProfessor() {
         listarProfessores();
         System.out.println("Digite o numero do Professor a ser deletado");
         int op = scan.nextInt();
         professores.remove(op);
         System.out.println("Remoção efetuada com sucesso");
     }
+
     public void apagarAutor() {
         listarAutores();
         System.out.println("Digite o numero do autor a ser deletado");
@@ -247,20 +249,23 @@ public class Auxiliar {
         autores.remove(op);
         System.out.println("Remoção efetuada com sucesso");
     }
-      public void apagarFuncionario() {
+
+    public void apagarFuncionario() {
         listarFuncionarios();
         System.out.println("Digite o numero do funcionario a ser deletado");
         int op = scan.nextInt();
         funcionarios.remove(op);
         System.out.println("Remoção efetuada com sucesso");
-    }  
-      public void apagarLivro() {
+    }
+
+    public void apagarLivro() {
         listarLivros();
         System.out.println("Digite o numero do livro a ser deletado");
         int op = scan.nextInt();
         livros.remove(op);
         System.out.println("Remoção efetuada com sucesso");
     }
+
     public void apagarDoacao() {
         listarDoadores();
         System.out.println("Digite o numero do doacao a ser deletado");
@@ -268,40 +273,67 @@ public class Auxiliar {
         doadores.remove(op);
         System.out.println("Remoção efetuada com sucesso");
     }
-    
-    //Emprestimo
-     public String emprestimoAluno(Livro livro) {
-        System.out.println("Digite seu RGA");
-        String rgaComp = scan.nextLine();
-        if (estudante.getRga().equals(rgaComp)) {
-            if (livro.getNumLivrosDisponiveis() >= 1) {
-                livro.setNumLivrosDisponiveis(livro.getNumLivrosDisponiveis() - 1);
-                return "Livro adquirido com sucesso";
-            } else {
-                return "Nao temos esse livro disponivel para emprestimo";
-            }
-        } else {
-            return "RGA invalido";
 
+    public String emprestimo() {
+        Emprestimo emprestimo = new Emprestimo();
+        Estudante est = new Estudante();
+        System.out.println("Livros em nosso acervo: \n");;
+        listarLivros();
+        System.out.println("Escolha o Livro");
+        int op = scan.nextInt();
+        System.out.println("Livro" + livros.get(op).getLivro() + "Selecionado");
+        System.out.println("Realizar emprestimo como Aluno digite 1 como professor Digite 2");
+        int opAlunoProfessor = scan.nextInt();
+        switch (opAlunoProfessor) {
+            case 1:
+                System.out.println("Digite seu RGA");
+                String rgaComp = scan.nextLine();
+                for (int i = 0; i < estudantes.; i++) {
+                    if (estudantes.get(i).getRga().contains(rgaComp)) {
+                        if (livros.get(op).getNumLivrosDisponiveis() >= 1) {
+                            livros.get(op).setNumLivrosDisponiveis(livros.get(op).getNumLivrosDisponiveis() - 1);
+                        } else {
+                            return "Nao temos esse livro disponivel para emprestimo";
+                        }
+                    } else {
+                        return "RGA invalido";
+
+                    }
+                }
+                break;
+            case 2:
+                System.out.println("Digite seu ID");
+                String idProfessorComp = scan.nextLine();
+                for(int i = 0; i<professores.; i++){
+                if (professores.get(i).getIdProfessor().contains(idProfessorComp)) {
+                    if (livros.get(op).getNumLivrosDisponiveis() >= 1) {
+                        livros.get(op).setNumLivrosDisponiveis(livros.get(op).getNumLivrosDisponiveis() - 1);
+                    } else {
+                        return "Nao temos esse livro disponivel para emprestimo";
+                    }
+                } else {
+                    return "ID invalido";
+                }
+                }
+                break;
+            default:
+                return "Opcao invalida, falha ao adquirir livro!";
         }
+
     }
 
-    public String emprestimoProfessor(Livro livro) {
-        System.out.println("Digite seu ID");
-        String idProfessorComp = scan.nextLine();
-        if (professor.getIdProfessor().equals(idProfessorComp)) {
-            if (livro.getNumLivrosDisponiveis() >= 1) {
-                livro.setNumLivrosDisponiveis(livro.getNumLivrosDisponiveis() - 1);
-                return "Livro adquirido com sucesso";
-            } else {
-                return "Nao temos esse livro disponivel para emprestimo";
-            }
-        } else {
-            return "ID invalido";
-        }
-    }
-    
-    
+    public String realizarManutencao() {
 
+        manutencao.setProcedimentos(listaProcedimentosManutencao);
+
+        System.out.println("Digite a descrição da manutenção");
+        scan.nextLine();
+        String descricao = scan.nextLine();
+        manutencao.setDescricao(descricao);
+
+        System.out.println("Manutenção cadastrada com sucesso");
+        manutencoes.add(manutencao);
+        relatorioCliente.setManutencao(manutencoes);
+    }
 
 }

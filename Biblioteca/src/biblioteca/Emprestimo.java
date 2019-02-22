@@ -6,47 +6,20 @@ public class Emprestimo {
 
     private String dataEmprestimo;
     private String prazoParaDevolucao;
-    Estudante estudante = new Estudante();
-    Professor professor = new Professor();
-    ArrayList<Livro> livro = new ArrayList();
+    private String professor;
+    private String aluno;
+    private String livro;
 
     public Emprestimo() {
     }
 
-    public Emprestimo(String dataEmprestimo, String prazoParaDevolucao) {
+    public Emprestimo(String dataEmprestimo, String prazoParaDevolucao,
+            String professor, String aluno, String livro) {
         this.dataEmprestimo = dataEmprestimo;
         this.prazoParaDevolucao = prazoParaDevolucao;
-    }
-
-     public String emprestimoAluno(Livro livro) {
-        System.out.println("Digite seu RGA");
-        String rgaComp = scan.nextLine();
-        if (estudante.getRga().equals(rgaComp)) {
-            if (livro.getNumLivrosDisponiveis() >= 1) {
-                livro.setNumLivrosDisponiveis(livro.getNumLivrosDisponiveis() - 1);
-                return "Livro adquirido com sucesso";
-            } else {
-                return "Nao temos esse livro disponivel para emprestimo";
-            }
-        } else {
-            return "RGA invalido";
-
-        }
-    }
-
-    public String emprestimoProfessor(Livro livro) {
-        System.out.println("Digite seu ID");
-        String idProfessorComp = scan.nextLine();
-        if (professor.getIdProfessor().equals(idProfessorComp)) {
-            if (livro.getNumLivrosDisponiveis() >= 1) {
-                livro.setNumLivrosDisponiveis(livro.getNumLivrosDisponiveis() - 1);
-                return "Livro adquirido com sucesso";
-            } else {
-                return "Nao temos esse livro disponivel para emprestimo";
-            }
-        } else {
-            return "ID invalido";
-        }
+        this.aluno = aluno;
+        this.professor = professor;
+        this.livro = livro;
     }
 
     public void devolverLivro() {
@@ -67,6 +40,30 @@ public class Emprestimo {
 
     public void setPrazoParaDevolucao(String prazoParaDevolucao) {
         this.prazoParaDevolucao = prazoParaDevolucao;
+    }
+
+    public String getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(String professor) {
+        this.professor = professor;
+    }
+
+    public String getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(String aluno) {
+        this.aluno = aluno;
+    }
+
+    public String getLivro() {
+        return livro;
+    }
+
+    public void setLivro(String livro) {
+        this.livro = livro;
     }
 
 }
