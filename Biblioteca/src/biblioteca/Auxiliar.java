@@ -113,21 +113,34 @@ public class Auxiliar {
         System.out.println("Data Nascimento");
         String dataNascimentoDoador = scan.nextLine();
         System.out.println("Nome do livro que deseja doar");
+        String nomeLivro = scan.nextLine();
         //Terminar essa parte, falta fazer pra colocar o titulo do livro e adicionar exemplares caso tenha na biblioteca
         // se não tiver chama a função de cadastro
+        boolean existe = false;
+        for (int i = 0; i < livros.size(); i++) {
+            if (livros.get(i).getTitulo().contains(nomeLivro)) {
+                existe = true;
+                break;
+            }
 
-        System.out.println("Digite quantos livros está doando");
-        int nrmLivrosDoados = scan.nextInt();
-        System.out.println("idDoacao");
-        String idDoacao = scan.nextLine();
-        System.out.println("----------------------------");
-        DoacaoLivro doador = new DoacaoLivro(nomeDoador, telefoneDoador, dataNascimentoDoador, idDoacao, nrmLivrosDoados);
-        doadores.add(doador);
+            System.out.println("Digite quantos livros que está doando");
+            int nrmLivrosDoados = scan.nextInt();
+            if (existe) {
+                livros.get(i).setNumLivrosDisponiveis(livros.get(i).getNumLivrosDisponiveis() + nrmLivrosDoados);
+            } else {
+                cadastrarLivro();
+            }
+            System.out.println("idDoacao");
+            String idDoacao = scan.nextLine();
+            System.out.println("----------------------------");
+            DoacaoLivro doador = new DoacaoLivro(nomeDoador, telefoneDoador, dataNascimentoDoador, idDoacao, nrmLivrosDoados);
+            doadores.add(doador);
+
+        }
 
     }
 
-   
-    public void cadastrarLivro() {
+  public void cadastrarLivro() {
     	Livro livro = new Livro();
     	AreaLivro arealivro = new AreaLivro();
     	
@@ -167,9 +180,10 @@ public class Auxiliar {
         		arealivro.setTemaArea(scan.nextLine());
         	area.add(arealivro);
         }
-        
-    }
-   
+  }
+
+    
+       
 
     //Litagens
     public void listarEstudantes() {
@@ -298,7 +312,7 @@ public class Auxiliar {
     public String emprestimo() {
         Emprestimo emprestimo = new Emprestimo();
         Estudante est = new Estudante();
-        RelatorioEmprestimo  relatorioEmp = new RelatorioEmprestimo();
+        RelatorioEmprestimo relatorioEmp = new RelatorioEmprestimo();
         System.out.println("Livros em nosso acervo: \n");
         listarLivros();
         System.out.println("Escolha o Livro");
@@ -341,7 +355,6 @@ public class Auxiliar {
                             System.out.println("Infomacoes adicionais :");
                             emprestimo.setInformacoesAdicionais(scan.nextLine());
                             emprestimos.add(emprestimo);
-                            
                             relatoriosEmprestimos.add(relatorioEmp);
                             return "Livro emprestado com sucesso";
 
@@ -357,8 +370,14 @@ public class Auxiliar {
                 return "Opcao invalida, falha ao adquirir livro!";
         }
 
-       
         return null;
+    }
+
+    
+    
+
+    public void gerarRelatorioEmprestimo(){
+    
     }
 
 }
